@@ -39,3 +39,7 @@ def count_by_counter_list_v3(s: list[str]) -> dict:
         update_counter = Counter(string)
         c += update_counter
     return dict(c)
+
+def count_by_counter_list_v4(s: list[str]) -> dict:
+    
+    return dict(sum((Counter(string) for string in s), Counter()))
