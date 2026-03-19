@@ -1,5 +1,5 @@
 [project]
-name = "project"
+name = "algorithm"
 version = "0.1.0"
 description = "Add your description here"
 authors = [
@@ -20,11 +20,14 @@ dependencies = [
     "matplotlib>=3.9.0",
     "safetensors>=0.4.0",
     "omegaconf>=2.3.0",
+    "jupyter>=1.1.1",
+    "seaborn>=0.13.2",
 ]
 
 
 [project.scripts]
-greet = "project.cli.greet:main"
+count = "algorithm.cli.count:main_cli"
+count_list = "algorithm.cli.count_list:main_cli"
 
 [tool.uv]
 dev-dependencies = [

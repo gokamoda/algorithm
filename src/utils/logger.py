@@ -19,17 +19,19 @@ def _custom_time(*args):
 
 
 class Timer:
-    def __init__(self, logger, label):
+    def __init__(self, logger, label, verbose=False):
         self.logger = logger
         self.label = label
+        self.verbose = verbose
 
     def __enter__(self):
-        self.logger.info(f"Start stopwatch: {self.label}")
+        if self.verbose:
+            self.logger.info(f"Start stopwatch: {self.label}")
         self.start = time.perf_counter()
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self.elapsed = time.perf_counter() - self.start
+        self.elapsed = time.perf_counter() - self.start  # in seconds
 
         # Determine appropriate unit
         if self.elapsed < 1:
@@ -63,9 +65,10 @@ class Timer:
         # filename = outer_frame.filename
         # lineno = outer_frame.lineno
 
-        self.logger.info(
-            f"{self.label} took {time_value:.2f} {unit}\nat {filename_short}:{lineno}"
-        )
+        if self.verbose:
+            self.logger.info(
+                f"{self.label} took {time_value:.2f} {unit}\nat {filename_short}:{lineno}"
+            )
 
 
 class CustomLogger(logging.Logger):
@@ -78,9 +81,9 @@ class CustomLogger(logging.Logger):
             self._warned_once.add(msg)
             self.warning(msg)
 
-    def timer(self, label: str):
+    def timer(self, label: str, verbose: bool = True):
         """Use `with` statement to measure elapsed time."""
-        return Timer(self, label)
+        return Timer(self, label, verbose=verbose)
 
     def timed(self, label: str | None = None):
         """"""
