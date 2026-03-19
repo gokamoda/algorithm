@@ -28,6 +28,7 @@ dependencies = [
 [project.scripts]
 count = "algorithm.cli.count:main_cli"
 count_list = "algorithm.cli.count_list:main_cli"
+random_pick = "algorithm.cli.random_pick:main_cli"
 
 [tool.uv]
 dev-dependencies = [

@@ -7,6 +7,7 @@ def count_by_defaultdict(s: str) -> dict:
         c[char] += 1
     return dict(c)
 
+
 def count_by_defaultdict_list(s: list[str]) -> dict:
     c = defaultdict(int)
     for string in s:

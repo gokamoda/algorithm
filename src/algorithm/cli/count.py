@@ -43,7 +43,7 @@ def main(n_iter: int, string_length: int):
             ]
 
     ranking = sorted(stopwatch.items(), key=lambda x: sum(x[1]) / len(x[1]))
-    
+
     return ranking
 
 
